@@ -8,6 +8,11 @@ using ThoughtWorks.QRCode.Codec;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
+using System.Net;
+using System.IO;
+using LabelCreatorSU627;
+using Newtonsoft.Json;
 
 namespace OBDTool
 {
@@ -443,9 +448,15 @@ namespace OBDTool
                 simnumber = null;
 
             if (chk2.Checked)
+            {
                 devicetype = GetDeviceType("SU627S");
+                InsertDeviceIntoB2B(sno, simnumber, "SU627S");
+            }
             else
+            {
                 devicetype = GetDeviceType("SU627W");
+                InsertDeviceIntoB2B(sno, simnumber, "SU627W");
+            }
 
             try
             {
@@ -766,6 +777,43 @@ namespace OBDTool
             }
             if (isstart == 4)
                 timer3.Enabled = false;
+        }
+
+        private void InsertDeviceIntoB2B(string serialNo, string simNo, string deviceName)
+        {
+            try
+            {
+                WebRequest tRequest = HttpWebRequest.Create("https://b2b.sekurus.com/new2020/serial_number.php");
+                tRequest.Method = "POST";
+                tRequest.ContentType = "application/json";
+
+                Device _device = new Device
+                {
+                    Serial_number = serialNo,
+                    Domain = deviceName,
+                    Sim_number = simNo
+                };
+
+                var jsonString = JsonConvert.SerializeObject(_device);
+                var jsontolower = jsonString.ToLower();
+                Byte[] byteArray = Encoding.UTF8.GetBytes(jsontolower);
+
+                tRequest.ContentLength = byteArray.Length;
+                Stream dataStream = tRequest.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+
+                WebResponse tResponse = tRequest.GetResponse();
+                dataStream = tResponse.GetResponseStream();
+                StreamReader tReader = new StreamReader(dataStream);
+
+                string sResponsefromServer = tReader.ReadToEnd();
+                tReader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message);
+            }
         }
     }
 }
