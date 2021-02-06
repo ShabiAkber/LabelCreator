@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>G:\sourc code\LabelCreatorSU627\SU627S-SU627W-Label Tool V1.20\</PublishUrl>
+    <PublishUrl>F:\Sekurus Office\sourc code\LabelCreatorSU627\SU627S-SU627W-Label Tool V1.23\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,11 +23,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ProductName>SU627S-SU627W-Label Tool v1.20</ProductName>
+    <ProductName>SU627S-SU627W-Label Tool v1.23</ProductName>
     <PublisherName>Sekurus International</PublisherName>
     <SuiteName>Sekurus Developer</SuiteName>
     <MinimumRequiredVersion>1.0.0.0</MinimumRequiredVersion>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

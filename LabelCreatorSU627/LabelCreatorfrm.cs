@@ -787,6 +787,11 @@ namespace OBDTool
                 tRequest.Method = "POST";
                 tRequest.ContentType = "application/json";
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+
                 Device _device = new Device
                 {
                     Serial_number = serialNo,
